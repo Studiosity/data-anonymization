@@ -25,14 +25,6 @@ require 'strategy/field/number/random_integer_delta'
 require 'strategy/field/number/random_float_delta'
 require 'strategy/field/number/random_big_decimal_delta'
 
-# contact
-require 'strategy/field/contact/geojson_base'
-require 'strategy/field/contact/random_phone_number'
-require 'strategy/field/contact/random_address'
-require 'strategy/field/contact/random_zipcode'
-require 'strategy/field/contact/random_city'
-require 'strategy/field/contact/random_province'
-
 # datetime
 require 'strategy/field/datetime/anonymize_time'
 require 'strategy/field/datetime/anonymize_datetime'
@@ -51,7 +43,6 @@ require 'strategy/field/name/random_first_name'
 require 'strategy/field/name/random_last_name'
 require 'strategy/field/name/random_full_name'
 require 'strategy/field/name/random_user_name'
-
 
 
 FieldStrategy = DataAnon::Strategy::Field
