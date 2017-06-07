@@ -25,6 +25,10 @@ module DataAnon
         self
       end
 
+      def name
+        @name
+      end
+
       def primary_key *fields
         @primary_keys = fields
       end

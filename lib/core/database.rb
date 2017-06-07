@@ -42,21 +42,32 @@ module DataAnon
       alias :collection :table
 
       def anonymize
+        errors = []
+
         begin
           @execution_strategy.new.anonymize @tables
         rescue => e
+          errors << e.message
           logger.error "\n#{e.message} \n #{e.backtrace}"
         end
+
         if @strategy.whitelist?
           @tables.each do |table|
             if table.fields_missing_strategy.present?
+              errors << "Fields missing anonymisation strategy for #{table.name}"
               logger.info('Fields missing the anonymization strategy:')
               table.fields_missing_strategy.print
             end
           end
         end
 
-        @tables.each { |table| table.errors.print }
+        @tables.each do |table|
+          next if table.errors.none?
+          errors << "Table errors for #{table.name}"
+          table.errors.print
+        end
+
+        errors
       end
 
     end
