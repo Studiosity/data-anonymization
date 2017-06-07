@@ -7,8 +7,5 @@ group :development, :test do
   gem 'rake'
   gem 'rspec'
   gem 'pry'
-  gem 'sqlite3'
-  gem 'mongo'
   gem 'coveralls', require: false
 end
-

@@ -17,10 +17,6 @@ module DataAnon
       self.abstract_class = true
     end
 
-    class DestinationDatabase < ActiveRecord::Base
-      self.abstract_class = true
-    end
-
     class BaseTable
 
       def self.create_table  database, table_name, primary_keys = []
@@ -42,14 +38,6 @@ module DataAnon
 
       def self.create table_name, primary_key = []
         create_table  SourceDatabase, table_name, primary_key
-      end
-
-    end
-
-    class DestinationTable < BaseTable
-
-      def self.create table_name, primary_key = []
-        create_table DestinationDatabase, table_name, primary_key
       end
 
     end

@@ -74,13 +74,6 @@ module DataAnon
         DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies)
       end
 
-      def dest_table
-        return @dest_table unless @dest_table.nil?
-        table_klass = Utils::DestinationTable.create @name, @primary_keys
-        table_klass.establish_connection @destination_database if @destination_database
-        @dest_table = table_klass
-      end
-
       def source_table
         return @source_table unless @source_table.nil?
         table_klass = Utils::SourceTable.create @name, @primary_keys
