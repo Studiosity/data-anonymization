@@ -31,7 +31,7 @@ module DataAnon
         logger.debug "Bulk processing table #{@name} with fields strategies #{@fields}"
         total = source_table.count
         if total > 0
-          progress = progress_bar.new(@name, total)
+          progress = progress_bar.new("#{@name} (bulk)", total)
           progress.show total / 2
 
           process_table
