@@ -1,4 +1,5 @@
 require 'strategy/base'
 require 'strategy/whitelist'
 require 'strategy/blacklist'
+require 'strategy/bulk_table'
 require 'strategy/field/fields'

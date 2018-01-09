@@ -156,7 +156,6 @@ module DataAnon
         @progress_bar = progress_bar
       end
 
-
     end
   end
 end

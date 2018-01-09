@@ -41,6 +41,12 @@ module DataAnon
       end
       alias :collection :table
 
+      def bulk_table(name, &block)
+        @tables << DataAnon::Strategy::BulkTable.new(
+          @source_database, @destination_database, name, @user_defaults
+        ).process_fields(&block)
+      end
+
       def anonymize
         errors = []
 
