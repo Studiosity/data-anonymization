@@ -46,14 +46,16 @@ module DataAnon
       end
 
       def process_table
-        updates = @fields.each_with_object({}) do |(column, strategy), acc|
-          field = DataAnon::Core::Field.new(column, random_string, 1, nil, @name)
-          acc[column] = strategy.anonymize field
-        end
+        @fields.each do |column, strategy|
+          next if is_primary_key? column
 
-        query = source_table
-        query = query.where(@where_clause) if @where_clause
-        query.update_all updates
+          field = DataAnon::Core::Field.new(column, random_string, 1, nil, @name)
+          value = strategy.anonymize field
+
+          query = source_table.where.not(column => nil)
+          query = query.where(@where_clause) if @where_clause
+          query.update_all column => value
+        end
       end
 
       def random_string
