@@ -29,14 +29,10 @@ module DataAnon
 
       def process
         logger.debug "Bulk processing table #{@name} with fields strategies #{@fields}"
-        total = source_table.count
+        total = @fields.count
         if total > 0
           progress = progress_bar.new("#{@name} (bulk)", total)
-          progress.show 1
-
           process_table progress
-
-          progress.show total
           progress.close
         end
 
@@ -46,9 +42,10 @@ module DataAnon
       end
 
       def process_table(progress)
-        index = 1
+        index = 0
 
         @fields.each do |column, strategy|
+          progress.show index+=1, force: true
           next if is_primary_key? column
 
           field = DataAnon::Core::Field.new(column, random_string, 1, nil, @name)
@@ -57,8 +54,6 @@ module DataAnon
           query = source_table.where.not(column => nil)
           query = query.where(@where_clause) if @where_clause
           query.update_all column => value
-
-          progress.show index+=1, force: true
         end
       end
 
