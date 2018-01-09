@@ -13,6 +13,7 @@ require 'strategy/field/string/random_string'
 require 'strategy/field/string/random_url'
 require 'strategy/field/string/formatted_string_numbers'
 require 'strategy/field/string/random_formatted_string'
+require 'strategy/field/string/random_ipv4'
 
 require 'strategy/field/string/select_from_file'
 require 'strategy/field/string/select_from_list'
@@ -24,6 +25,8 @@ require 'strategy/field/number/random_float'
 require 'strategy/field/number/random_integer_delta'
 require 'strategy/field/number/random_float_delta'
 require 'strategy/field/number/random_big_decimal_delta'
+require 'strategy/field/number/random_latitude'
+require 'strategy/field/number/random_longitude'
 
 # datetime
 require 'strategy/field/datetime/anonymize_time'
