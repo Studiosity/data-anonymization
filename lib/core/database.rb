@@ -84,6 +84,7 @@ module DataAnon
           begin
             table.process
           rescue => e
+            table.errors.log_error nil, e
             logger.error "\n#{e.message} \n #{e.backtrace}"
           end
         end

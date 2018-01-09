@@ -46,8 +46,9 @@ module DataAnon
       end
 
       def process_table
-        updates = @fields.each_with_object({}) do |(field, strategy), acc|
-          acc[field] = strategy.anonymize random_string
+        updates = @fields.each_with_object({}) do |(column, strategy), acc|
+          field = DataAnon::Core::Field.new(column, random_string, 1, nil, @name)
+          acc[column] = strategy.anonymize field
         end
 
         query = source_table

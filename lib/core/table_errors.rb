@@ -30,8 +30,8 @@ module DataAnon
         return if none?
         logger.error("Errors while processing table '#{@table_name}':")
         @errors.each do |error|
-          logger.error(error[:exception])
-          logger.error(error[:exception].backtrace.join("\n\t"))
+          logger.error(error[:exception].message)
+          logger.error("\n\t" + error[:exception].backtrace.join("\n\t"))
         end
       end
 
