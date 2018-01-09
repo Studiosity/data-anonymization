@@ -63,7 +63,7 @@ module DataAnon
       end
 
       def random_string
-        rand(36**rand(1..50)).to_s(36)
+        rand(36**rand(5..50)).to_s(36)
       end
 
     end
