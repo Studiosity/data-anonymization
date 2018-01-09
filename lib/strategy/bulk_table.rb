@@ -32,9 +32,9 @@ module DataAnon
         total = source_table.count
         if total > 0
           progress = progress_bar.new("#{@name} (bulk)", total)
-          progress.show total / 2
+          progress.show 1
 
-          process_table
+          process_table progress
 
           progress.show total
           progress.close
@@ -45,7 +45,9 @@ module DataAnon
         end
       end
 
-      def process_table
+      def process_table(progress)
+        index = 1
+
         @fields.each do |column, strategy|
           next if is_primary_key? column
 
@@ -55,6 +57,8 @@ module DataAnon
           query = source_table.where.not(column => nil)
           query = query.where(@where_clause) if @where_clause
           query.update_all column => value
+
+          progress.show index+=1, force: true
         end
       end
 

@@ -23,8 +23,8 @@ module DataAnon
         @power_bar.settings.tty.finite.output = Proc.new { |s| $stderr.print s }
       end
 
-      def show index
-        if show_progress? index
+      def show(index, force: false)
+        if force || show_progress?(index)
           show_progress index
         end
       end
