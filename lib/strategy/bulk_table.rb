@@ -53,7 +53,7 @@ module DataAnon
 
           query = source_table.where.not(column => nil)
           query = query.where(@where_clause) if @where_clause
-          if value.include? '='
+          if value.is_a?(String) && value.include?('=')
             query.update_all value
           else
             query.update_all column => value
