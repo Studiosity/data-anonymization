@@ -45,7 +45,7 @@ module DataAnon
         index = 0
 
         @fields.each do |column, strategy|
-          progress.show index+=1, force: true
+          progress.show index += 1, force: true
           next if is_primary_key? column
 
           field = DataAnon::Core::Field.new(column, random_string, 1, nil, @name)
@@ -53,7 +53,11 @@ module DataAnon
 
           query = source_table.where.not(column => nil)
           query = query.where(@where_clause) if @where_clause
-          query.update_all column => value
+          if value.include? '='
+            query.update_all value
+          else
+            query.update_all column => value
+          end
         end
       end
 
