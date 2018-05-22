@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('Email').using FieldStrategy::RandomMailinatorEmail.new
 
-      class RandomMailinatorEmail
+      class RandomMailinatorEmail < Safe
 
         def initialize
           @email_anonymizer = DataAnon::Strategy::Field::RandomEmail.new("mailinator","com")

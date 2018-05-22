@@ -3,7 +3,7 @@ module DataAnon
     module Field
 
 
-      class AnonymizeArray
+      class AnonymizeArray < Safe
 
         def self.user_defaults user_defaults
           @@user_defaults = user_defaults

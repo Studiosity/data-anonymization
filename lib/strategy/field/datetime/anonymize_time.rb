@@ -21,7 +21,7 @@ module DataAnon
       #    # anonymizes only the minute field
       #    anonymize('DateOfBirth').using FieldStrategy::AnonymizeTime.only_minute
 
-      class AnonymizeTime
+      class AnonymizeTime < Safe
 
         DEFAULT_ANONYMIZATION = true
 

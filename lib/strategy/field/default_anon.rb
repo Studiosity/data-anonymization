@@ -2,7 +2,7 @@ module DataAnon
   module Strategy
     module Field
 
-      class DefaultAnon
+      class DefaultAnon < Safe
 
         DEFAULT_STRATEGIES = {:string => FieldStrategy::RandomString.new,
                               :fixnum => FieldStrategy::RandomIntegerDelta.new(5),

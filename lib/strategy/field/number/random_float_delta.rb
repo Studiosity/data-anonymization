@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('points').using FieldStrategy::RandomFloatDelta.new(2.5)
 
-      class RandomFloatDelta
+      class RandomFloatDelta < Safe
 
         def initialize delta = 10.0
           @delta = delta

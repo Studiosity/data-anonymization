@@ -12,7 +12,7 @@ module DataAnon
       #    anonymize('DateOfBirth').using FieldStrategy::DateDelta.new(25)
       #
 
-      class DateDelta
+      class DateDelta < Safe
 
         DEFAULT_DAY_DELTA = 10
 

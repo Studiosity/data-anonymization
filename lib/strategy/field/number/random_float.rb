@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('points').using FieldStrategy::RandomFloat.new(3.0,5.0)
 
-      class RandomFloat
+      class RandomFloat < Safe
 
         def initialize from = 0.0, to = 100.0
           @from = from

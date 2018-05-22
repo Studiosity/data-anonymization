@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('fb_profile').using FieldStrategy::RandomURL.new
 
-    class RandomUrl
+    class RandomUrl < Safe
 
         def anonymize field
 

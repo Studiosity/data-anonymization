@@ -7,7 +7,7 @@ module DataAnon
       #   !!!ruby
       #   anonymize('UserName').using FieldStrategy::RandomString.new
 
-      class RandomString
+      class RandomString < Safe
 
         def anonymize field
 

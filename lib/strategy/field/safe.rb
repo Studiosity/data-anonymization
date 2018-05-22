@@ -2,15 +2,11 @@ module DataAnon
   module Strategy
     module Field
 
-
-      class Whitelist < Safe
-
-        def anonymize field
-          field.value
+      class Safe
+        def unsafe?
+          false
         end
-
       end
-
 
     end
   end

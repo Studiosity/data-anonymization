@@ -9,7 +9,7 @@ module DataAnon
       #    anonymize('Email').using FieldStrategy::RandomEmail.new('thoughtworks','com')
       #
 
-      class RandomEmail
+      class RandomEmail < Safe
 
         TLDS = ['com','org','net','edu','gov','mil','biz','info']
 

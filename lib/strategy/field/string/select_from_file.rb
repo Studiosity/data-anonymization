@@ -8,7 +8,7 @@ module DataAnon
       #    anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
       #
 
-      class SelectFromFile
+      class SelectFromFile < Safe
 
         def initialize file_path
           @values = File.read(file_path).split

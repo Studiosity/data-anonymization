@@ -8,7 +8,7 @@ module DataAnon
       #    anonymize('PhoneNumber').using FieldStrategy::RandomFormattedString.new
       #    anonymize('Email').using FieldStrategy::RandomFormattedString.new
 
-      class RandomFormattedString
+      class RandomFormattedString < Safe
 
         SMALL_CHARS = "abcdefghjkmnpqrstuvwxyz"
         CAPS_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ"

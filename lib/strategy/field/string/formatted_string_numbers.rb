@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('CreditCardNumber').using FieldStrategy::FormattedStringNumber.new
 
-      class FormattedStringNumber
+      class FormattedStringNumber < Safe
 
         def anonymize field
           @original_string = field.value

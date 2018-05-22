@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('Age').using FieldStrategy::RandomInteger.new(18,70)
 
-      class RandomInteger
+      class RandomInteger < Safe
 
         def initialize from = 0, to = 100
           @from = from

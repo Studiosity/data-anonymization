@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('longitude').using FieldStrategy::RandomLongitude
 
-      class RandomLongitude
+      class RandomLongitude < Safe
         def anonymize(_field)
           DataAnon::Utils::RandomFloat.generate(-180, 180)
         end

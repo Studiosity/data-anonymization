@@ -12,7 +12,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('UserName').using FieldStrategy::LoremIpsum.new(File.read('my_file.txt'))
 
-      class LoremIpsum
+      class LoremIpsum < Safe
 
         DEFAULT_TEXT = <<-default
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis nulla quis ligula bibendum dignissim. Nullam elementum convallis mauris, at ultrices odio dignissim dapibus. Etiam vitae neque lorem, a luctus purus. In at diam mi, sit amet dapibus magna. Maecenas tincidunt tortor id dolor tristique dictum. Morbi pulvinar odio ut lorem gravida ac varius orci ultrices. Nulla id arcu dui, sit amet commodo augue. Curabitur elit elit, semper quis tincidunt at, auctor et tortor.

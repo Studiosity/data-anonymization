@@ -7,7 +7,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('Username').using FieldStrategy::RandomUserName.new
       #
-      class RandomUserName
+      class RandomUserName < Safe
 
         DEFAULT_MIN_LENGTH = 5
         DEFAULT_MAX_LENGTH = 10

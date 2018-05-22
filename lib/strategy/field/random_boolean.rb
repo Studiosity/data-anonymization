@@ -3,7 +3,7 @@ module DataAnon
     module Field
 
 
-      class RandomBoolean
+      class RandomBoolean < Safe
 
         BOOL_VALUES = [true,false]
 

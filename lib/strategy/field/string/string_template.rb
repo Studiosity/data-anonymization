@@ -14,7 +14,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('Email').using FieldStrategy::StringTemplate.new('useremail#{row_number}@mailinator.com')
 
-      class StringTemplate
+      class StringTemplate < Safe
 
         def initialize template
           @template = template

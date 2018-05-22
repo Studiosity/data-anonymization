@@ -1,3 +1,4 @@
+require 'strategy/field/safe'
 require 'strategy/field/whitelist'
 require 'strategy/field/random_boolean'
 

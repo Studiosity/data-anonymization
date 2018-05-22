@@ -9,7 +9,7 @@ module DataAnon
       #    anonymize('Email').using FieldStrategy::GmailTemplate.new('username')
       #
 
-      class GmailTemplate
+      class GmailTemplate < Safe
 
         def initialize username = 'someusername'
           @username = username

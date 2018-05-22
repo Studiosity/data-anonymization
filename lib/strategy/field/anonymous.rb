@@ -5,12 +5,17 @@ module DataAnon
 
       class Anonymous
 
-        def initialize &block
+        def initialize opts, &block
+          @opts = opts
           @block = block
         end
 
         def anonymize field
           @block.call field
+        end
+
+        def unsafe?
+          @opts.is_a?(Hash) && !!@opts[:unsafe]
         end
 
       end

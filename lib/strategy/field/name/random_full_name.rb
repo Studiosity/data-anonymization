@@ -10,7 +10,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('FullName').using FieldStrategy::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
 
-      class RandomFullName
+      class RandomFullName < Safe
 
         def initialize first_names = nil, last_names = nil
           @first_name_anonymizer = DataAnon::Strategy::Field::RandomFirstName.new(first_names)

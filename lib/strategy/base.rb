@@ -53,7 +53,7 @@ module DataAnon
         @continue_block = block
       end
 
-      def anonymize *fields, &block
+      def anonymize *fields, **opts, &block
         if block.nil?
           fields.each { |f| @fields[f] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }
           temp = self
@@ -65,7 +65,7 @@ module DataAnon
             end
           end
         else
-          fields.each { |f| @fields[f] = DataAnon::Strategy::Field::Anonymous.new(&block) }
+          fields.each { |f| @fields[f] = DataAnon::Strategy::Field::Anonymous.new(opts, &block) }
         end
       end
 
