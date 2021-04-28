@@ -7,6 +7,7 @@ module DataAnon
       def anonymize tables
         ::Parallel.each(tables, in_processes: 8) do |table|
           begin
+            table.connection.reconnect!
             table.progress_bar_class DataAnon::Utils::ParallelProgressBar
             table.process
           rescue => e
