@@ -5,14 +5,16 @@ module DataAnon
     class Table
 
       def anonymize tables
-        ::Parallel.each(tables, in_processes: 8) do |table|
+        ::Parallel.all?(tables, in_processes: 4) do |table|
           begin
             ActiveRecord::Base.connection.reconnect!
             table.progress_bar_class DataAnon::Utils::ParallelProgressBar
             table.process
+            true
           rescue => e
             table.errors.log_error nil, e
             logger.error "\n#{e.message} \n #{e.backtrace}"
+            false
           end
         end
       end

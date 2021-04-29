@@ -51,7 +51,9 @@ module DataAnon
         errors = []
 
         begin
-          @execution_strategy.new.anonymize @tables
+          if !@execution_strategy.new.anonymize(@tables) && @execution_strategy == DataAnon::Parallel::Table
+            errors << "Parallel anonymisation failed. See errors above"
+          end
         rescue => e
           errors << e.message
           logger.error "\n#{e.message} \n #{e.backtrace}"
@@ -88,6 +90,7 @@ module DataAnon
             logger.error "\n#{e.message} \n #{e.backtrace}"
           end
         end
+        true
       end
     end
 
