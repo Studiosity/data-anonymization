@@ -49,6 +49,7 @@ module DataAnon
 
       def anonymize
         errors = []
+        warnings = []
 
         begin
           if !@execution_strategy.new.anonymize(@tables) && @execution_strategy == DataAnon::Parallel::Table
@@ -70,12 +71,18 @@ module DataAnon
         end
 
         @tables.each do |table|
-          next if table.errors.none?
-          errors << "Table errors for #{table.name}"
-          table.errors.print
+          if table.errors.any?
+            errors << "Table errors for #{table.name}"
+            table.errors.print
+          end
+
+          if table.errors.any_warnings?
+            warnings << "Table warnings for #{table.name}:\n#{table.errors.warnings.map { |w| "* #{w}" }.join("\n")}"
+            table.errors.print_warnings
+          end
         end
 
-        errors
+        [errors, warnings]
       end
 
     end

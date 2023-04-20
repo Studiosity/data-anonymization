@@ -5,7 +5,7 @@ module DataAnon
     class Table
 
       def anonymize tables
-        ::Parallel.all?(tables, in_processes: 4) do |table|
+        ::Parallel.all?(tables, in_threads: 4) do |table|
           begin
             ActiveRecord::Base.connection.reconnect!
             table.progress_bar_class DataAnon::Utils::ParallelProgressBar

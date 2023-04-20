@@ -48,6 +48,11 @@ module DataAnon
           progress.show index += 1, force: true
           next if is_primary_key? column
 
+          unless column_exists? column
+            @errors.log_warning "#{@name}.#{column} does not exist"
+            next
+          end
+
           field = DataAnon::Core::Field.new(column, random_string, 1, nil, @name)
           value = strategy.anonymize field
 
@@ -63,6 +68,20 @@ module DataAnon
 
       def random_string
         rand(36**rand(5..50)).to_s(36)
+      end
+
+      def column_exists?(column)
+        column_names.include? column.to_s
+      end
+
+      def column_names
+        return @column_names if defined? @column_names
+
+        @column_names =
+          source_table.
+            from('information_schema.columns').
+            where('table_name = ?', @name).
+            pluck(:column_name)
       end
 
     end
