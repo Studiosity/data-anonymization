@@ -7,7 +7,7 @@ module DataAnon
       def anonymize tables
         ::Parallel.all?(tables, in_threads: 4) do |table|
           begin
-            ActiveRecord::Base.connection.reconnect!
+            table.source_table.connection.reconnect!
             table.progress_bar_class DataAnon::Utils::ParallelProgressBar
             table.process
             true
