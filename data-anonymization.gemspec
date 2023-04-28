@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency('activerecord', '~> 5')
-  gem.add_dependency('composite_primary_keys', '~> 9.0')
+  gem.add_dependency('composite_primary_keys', '~> 11')
   gem.add_dependency('powerbar', '~> 1.0')
   gem.add_dependency('parallel', '~> 1.9')
 end
