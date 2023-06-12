@@ -50,11 +50,10 @@ module DataAnon
       def anonymize
         errors = []
         warnings = []
+        table_errors_set = nil
 
         begin
-          if !@execution_strategy.new.anonymize(@tables) && @execution_strategy == DataAnon::Parallel::Table
-            errors << "Parallel anonymisation failed. See errors above"
-          end
+          table_errors_set = @execution_strategy.new.anonymize(@tables)
         rescue => e
           errors << e.message
           logger.error "\n#{e.message} \n #{e.backtrace}"
@@ -70,15 +69,17 @@ module DataAnon
           end
         end
 
-        @tables.each do |table|
-          if table.errors.any?
-            errors << "Table errors for #{table.name}"
-            table.errors.print
-          end
+        if table_errors_set
+          table_errors_set.each do |table_errors|
+            if table_errors.any?
+              errors << "Table errors for #{table_errors.table_name}"
+              table_errors.print
+            end
 
-          if table.errors.any_warnings?
-            warnings << "Table warnings for #{table.name}:\n#{table.errors.warnings.map { |w| "* #{w}" }.join("\n")}"
-            table.errors.print_warnings
+            if table_errors.any_warnings?
+              warnings << "Table warnings for #{table_errors.table_name}:\n#{table_errors.warnings.map { |w| "* #{w}" }.join("\n")}"
+              table_errors.print_warnings
+            end
           end
         end
 

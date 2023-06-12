@@ -4,7 +4,7 @@ module DataAnon
     class TableErrors
       include Utils::Logging
 
-      attr_reader :errors, :warnings
+      attr_reader :errors, :warnings, :table_name
 
       def initialize table_name
         @table_name = table_name
