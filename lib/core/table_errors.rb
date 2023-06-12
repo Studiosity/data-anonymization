@@ -53,7 +53,7 @@ module DataAnon
 
         logger.warn "Warnings while processing table '#{@table_name}':"
         warnings.each do |warning|
-          logger.warn warning
+          logger.warn warning[:warning]
         end
       end
 
