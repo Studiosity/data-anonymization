@@ -82,6 +82,8 @@ module DataAnon
             from('information_schema.columns').
             where('table_name = ?', @name).
             pluck(:column_name)
+      rescue PG::UndefinedTable
+        []
       end
 
     end
