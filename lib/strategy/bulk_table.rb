@@ -84,6 +84,9 @@ module DataAnon
             pluck(:column_name)
       rescue PG::UndefinedTable
         []
+      rescue StandardError => e
+        puts "Unexpected error occurred: #{e}"
+        []
       end
 
     end
