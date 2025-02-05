@@ -36,8 +36,8 @@ module DataAnon
           progress.close
         end
 
-        if source_table.respond_to?('clear_all_connections!')
-          source_table.clear_all_connections!
+        if source_table.respond_to?("connection_handler")
+          source_table.connection_handler.clear_all_connections!
         end
       end
 
