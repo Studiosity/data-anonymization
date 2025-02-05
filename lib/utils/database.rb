@@ -1,5 +1,4 @@
 require 'active_record'
-require 'composite_primary_keys'
 require 'logger'
 
 module DataAnon
@@ -21,10 +20,11 @@ module DataAnon
 
       def self.create_table  database, table_name, primary_keys = []
         klass_name = table_name.to_s.downcase.capitalize
-        return database.const_get klass_name if database.const_defined? klass_name
+        return database.const_get(klass_name, false) if database.const_defined?(klass_name, false)
+
         database.const_set(klass_name, Class.new(database) do
             self.table_name = table_name
-            self.primary_keys = primary_keys if primary_keys.length > 1
+            self.primary_key = primary_keys if primary_keys.length > 1
             self.primary_key = primary_keys[0] if primary_keys.length == 1
             self.primary_key = nil if primary_keys.length == 0
             self.inheritance_column = :_type_disabled
